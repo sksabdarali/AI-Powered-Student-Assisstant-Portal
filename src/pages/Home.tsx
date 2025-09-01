@@ -1,10 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Brain, MessageSquare, BookOpen, Users } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { Brain, MessageSquare, BookOpen, Users, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    const email = localStorage.getItem("userEmail") || "";
+    setIsLoggedIn(loggedIn);
+    setUserEmail(email);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userEmail");
+    setIsLoggedIn(false);
+    setUserEmail("");
+  };
+
   useEffect(() => {
     // Initialize Flowise chatbot (full version)
     const script = document.createElement('script');
@@ -54,12 +72,24 @@ const Home = () => {
               <span className="text-lg font-bold gradient-text">AI Student Portal</span>
             </div>
             <div className="flex items-center space-x-3">
-              <Link to="/login">
-                <Button variant="ghost" size="sm">Login</Button>
-              </Link>
-              <Link to="/signup">
-                <Button variant="hero" size="sm">Sign Up</Button>
-              </Link>
+              {isLoggedIn ? (
+                <div className="flex items-center space-x-3">
+                  <span className="text-sm text-muted-foreground">Welcome, {userEmail}</span>
+                  <Button variant="ghost" size="sm" onClick={handleLogout}>
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <Button variant="ghost" size="sm">Login</Button>
+                  </Link>
+                  <Link to="/signup">
+                    <Button variant="hero" size="sm">Sign Up</Button>
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
