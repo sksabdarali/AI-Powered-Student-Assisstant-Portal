@@ -68,7 +68,7 @@ const Home = () => {
       {/* Main AI Chat Interface */}
       <div className="flex-1 overflow-hidden">
         <div className="h-full">
-          {/* The Flowise full chatbot will be injected here */}
+          <flowise-fullchatbot className="flowise-fullchatbot"></flowise-fullchatbot>
         </div>
       </div>
     </div>
