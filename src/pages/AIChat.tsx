@@ -4,7 +4,7 @@ import { Brain, MessageSquare, BookOpen, Users, LogOut } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+const AIChat = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
@@ -14,13 +14,19 @@ const Home = () => {
     const email = localStorage.getItem("userEmail") || "";
     setIsLoggedIn(loggedIn);
     setUserEmail(email);
-  }, []);
+    
+    // Redirect to landing if not logged in
+    if (!loggedIn) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userEmail");
     setIsLoggedIn(false);
     setUserEmail("");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -44,6 +50,7 @@ const Home = () => {
         width: 100% !important;
         border: none !important;
         border-radius: 0 !important;
+        background: hsl(var(--background)) !important;
       }
       
       .flowise-fullchatbot iframe {
@@ -64,7 +71,7 @@ const Home = () => {
   return (
     <div className="h-screen bg-background flex flex-col">
       {/* Navigation */}
-      <nav className="border-b bg-card/50 backdrop-blur-sm">
+      <nav className="border-b border-border bg-card/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
@@ -105,4 +112,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default AIChat;

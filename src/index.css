@@ -114,7 +114,7 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-red-400 to-pink-400 bg-clip-text text-transparent;
   }
   
   .hero-glow {

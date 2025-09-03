@@ -3,10 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Brain } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +29,10 @@ const Signup = () => {
       alert("Passwords don't match!");
       return;
     }
-    console.log("Signup attempted with:", formData);
+    // Simple signup - in real app, validate and create account
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("userEmail", formData.email);
+    navigate("/chat");
   };
 
   return (

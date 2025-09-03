@@ -16,7 +16,7 @@ const Login = () => {
     // Simple login - in real app, validate credentials
     localStorage.setItem("isLoggedIn", "true");
     localStorage.setItem("userEmail", email);
-    navigate("/");
+    navigate("/chat");
   };
 
   return (
