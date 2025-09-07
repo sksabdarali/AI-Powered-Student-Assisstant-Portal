@@ -34,11 +34,11 @@ const AIChat = () => {
     const script = document.createElement('script');
     script.type = 'module';
     script.textContent = `
-      import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-      Chatbot.initFull({
-          chatflowid: "cceeebb6-1e2f-45dd-9c3c-dc5bc2da0cf2",
-          apiHost: "http://localhost:3000",
-      })
+       import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+    Chatbot.initFull({
+        chatflowid: "c1c5856f-db84-41bc-b90f-7940c24e423e",
+        apiHost: "http://localhost:3000",
+    })
     `;
     document.head.appendChild(script);
 
